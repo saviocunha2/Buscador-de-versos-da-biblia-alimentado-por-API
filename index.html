@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblia</title>
+</head>
+<body>
+
+    <h1>Digite um numero  de 1 a 150 para receber um verso</h1>
+    <input type="text" placeholder="digite um numero " id="numero"/>
+    <button id="buscarPalavra">Buscar palavra de DEUS</button>
+    
+    <pre id="debug"></pre>
+</body>
+
+    <script type="text/javascript">
+        document.getElementById('buscarPalavra').addEventListener('click', () =>{
+            const palavraConsole = document.getElementById('numero').value;
+            
+            fetch(`https://www.abibliadigital.com.br/api/verses/nvi/sl/${palavraConsole}`)
+            .then((res)=> res.json())
+            .then((data)=>{
+                document.getElementById('debug').innerText = JSON.stringify(data.verses[0].text)
+                // fetch(`https://www.abibliadigital.com.br/api/verses/nvi/sl/${res.verses.number[numero]}`)
+                
+                
+            });
+        });
+    </script>
+
+</html>
